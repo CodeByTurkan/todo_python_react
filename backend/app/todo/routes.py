@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from typing import List
-from backend.app.todo.models import TodoCreate, TodoResponse, TodoUpdate
-from backend.app.todo.services import create_todo, del_todo, get_all_todos, update_todo
+from app.todo.models import TodoCreate, TodoResponse, TodoUpdate
+from app.todo.services import create_todo, del_todo, get_all_todos, update_todo
 
 
 router = APIRouter(prefix="/todos", tags=["todos"])
@@ -17,7 +16,7 @@ async def create_todo_endpoint(todo: TodoCreate):
     return create_todo(todo)
 
 
-@router.put("{todoId}", response_model=TodoResponse)
+@router.put("/{todoId}", response_model=TodoResponse)
 async def update_todo_endpoint(todoId: int, todoUpdate: TodoUpdate):
     updated = update_todo(todoId, todoUpdate)
     if updated is None:

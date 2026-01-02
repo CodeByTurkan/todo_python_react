@@ -11,4 +11,5 @@ class TodoResponse(BaseModel):
     id: int
     text: str
 
-    
+    class Config:
+        from_attributes = True
